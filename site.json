@@ -1,0 +1,12 @@
+{
+  "title": "Meeting Pulse",
+  "description": "Security, privacy and participant controls for AI meeting delegation.",
+  "reviewed_on": "26 November 2026",
+  "pages": [
+    {"slug": "index", "title": "Security & privacy overview", "nav": "Overview"},
+    {"slug": "data-handling", "title": "How meeting information is handled", "nav": "Data handling"},
+    {"slug": "security", "title": "Protection and assurance boundaries", "nav": "Security"},
+    {"slug": "faq", "title": "Common questions", "nav": "Questions & answers"},
+    {"slug": "support", "title": "Questions, concerns and requests", "nav": "Support & requests"}
+  ]
+}

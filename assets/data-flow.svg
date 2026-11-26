@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 690" role="img" aria-labelledby="title desc">
+  <title id="title">Meeting Pulse information boundaries</title>
+  <desc id="desc">An authorized user selects a Webex meeting. Meeting content is processed by the Cisco on-premises Meeting Pulse service, which uses configured AI services and produces stored records and approved outputs. On-premises application hosting does not establish all supporting service locations.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#5b7376"/></marker>
+  </defs>
+  <rect width="1120" height="690" fill="#f6f8f9" rx="6"/>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="560" y="52" fill="#24363a" font-size="27" font-weight="700">Participation is authorized. Processing boundaries stay explicit.</text>
+    <rect x="373" y="86" width="374" height="92" rx="6" fill="#fff" stroke="#b9ced0" stroke-width="2"/>
+    <text x="560" y="124" font-size="25" font-weight="700" fill="#20363a">You and your account</text>
+    <text x="560" y="155" font-size="20" fill="#526b6e">Select meetings and approved access</text>
+    <path d="M560 180V247" stroke="#5b7376" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="32" y="259" width="276" height="125" rx="6" fill="#fff" stroke="#b9ced0" stroke-width="2"/>
+    <text x="170" y="299" font-size="25" font-weight="700" fill="#20363a">Webex meeting</text>
+    <text x="170" y="332" font-size="20" fill="#526b6e">Available captions, audio</text>
+    <text x="170" y="360" font-size="20" fill="#526b6e">and shared-content context</text>
+    <rect x="373" y="254" width="374" height="138" rx="6" fill="#e9f4f1" stroke="#247a70" stroke-width="2"/>
+    <text x="560" y="296" font-size="27" font-weight="700" fill="#175e57">Meeting Pulse</text>
+    <text x="560" y="329" font-size="22" fill="#175e57">Cisco on-premises application</text>
+    <text x="560" y="362" font-size="20" fill="#395f5a">Processes authorized meeting content</text>
+    <rect x="812" y="259" width="276" height="125" rx="6" fill="#fff" stroke="#b9ced0" stroke-width="2"/>
+    <text x="950" y="299" font-size="25" font-weight="700" fill="#20363a">Configured AI</text>
+    <text x="950" y="332" font-size="20" fill="#526b6e">Selected inputs and results</text>
+    <text x="950" y="360" font-size="20" fill="#526b6e">Provider terms apply separately</text>
+    <path d="M310 322H363" stroke="#5b7376" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M755 322H802" stroke="#5b7376" stroke-width="3" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+    <path d="M490 398V444H300V479" fill="none" stroke="#5b7376" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M630 398V444H822V479" fill="none" stroke="#5b7376" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="112" y="490" width="376" height="106" rx="6" fill="#fff" stroke="#b9ced0" stroke-width="2"/>
+    <text x="300" y="532" font-size="24" font-weight="700" fill="#20363a">Saved meeting information</text>
+    <text x="300" y="568" font-size="20" fill="#526b6e">Access and retention rules apply</text>
+    <rect x="634" y="490" width="376" height="106" rx="6" fill="#fff" stroke="#b9ced0" stroke-width="2"/>
+    <text x="822" y="532" font-size="24" font-weight="700" fill="#20363a">Approved outputs</text>
+    <text x="822" y="568" font-size="20" fill="#526b6e">Insights, alerts and summaries</text>
+    <text x="560" y="642" font-size="20" fill="#526b6e">Encrypted transport is not a claim that processing services cannot read content.</text>
+    <text x="560" y="671" font-size="20" fill="#526b6e">Application hosting and supporting-service locations are separate assurances.</text>
+  </g>
+</svg>
