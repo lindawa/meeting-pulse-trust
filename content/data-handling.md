@@ -27,6 +27,11 @@ service and the chosen delivery channel. Depending on the feature, an AI request
 can include meeting text, shared-content context and the instructions needed to
 produce a personalized result.
 
+The deployment owner confirms that the Cisco-managed pilot uses Cisco-approved
+enterprise AI services. This is distinct from using a public consumer chatbot
+or adding a custom provider. Approval and permitted information must be checked
+for the actual service, model and use case, including fallback services.
+
 An on-premises application does not, by itself, guarantee that all processing
 stays on premises or that information never reaches another service. Confirm
 approved providers, processing locations, retention terms and permitted data
@@ -59,6 +64,11 @@ The deployment owner has confirmed that the current pilot's production datastore
 is encrypted at rest and managed by the Cisco infrastructure team. Authorized
 application services still process meeting information to provide the requested
 capabilities.
+
+Encryption at rest protects the stored data at the infrastructure layer.
+Authorized application and database access still return readable information
+for the service's intended functions. It is not a promise of separate
+application-level encryption for every meeting-content field.
 
 This storage assurance does not automatically extend to copies exported elsewhere,
 delivered messages or AI-provider records. Their protections and retention need

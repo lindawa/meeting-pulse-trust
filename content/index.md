@@ -2,12 +2,22 @@
 
 An overview for meeting participants, pilot users and stakeholders.
 
-Meeting Pulse lets a person delegate attendance at selected Webex meetings and
-receive relevant insights, keyword alerts and summaries. It supports the person;
-it does not make decisions or commitments on their behalf.
+Meeting Pulse helps you stay informed and contribute when time zones or
+overlapping commitments keep you from every Webex meeting. Delegate selected
+meetings and receive insights, action items and summaries tailored to your chosen
+persona, with live alerts for the keywords you want to monitor. Focus on the
+decisions, risks and requests that matter to you, so you can follow up or step
+into a discussion when needed without attending every minute or reading every
+transcript.
+
+You remain in control: the assistant supports your participation; it does not
+make decisions or commitments on your behalf.
 
 ## The essentials
 
+- **Personalized and proactive.** Your chosen persona shapes the insights and
+  summaries; configured keyword alerts help you recognize when your attention
+  or contribution may be needed.
 - **Cisco on-premises hosting.** The current pilot application runs on
   Cisco-managed on-premises servers, not a public-cloud application host.
 - **User-authorized access.** Delegations belong to the signed-in user's
@@ -19,6 +29,10 @@ it does not make decisions or commitments on their behalf.
 - **Encrypted production storage.** The deployment owner has confirmed that the
   production datastore is encrypted at rest and managed by the Cisco
   infrastructure team.
+- **Cisco-approved AI services.** The deployment owner confirms that the
+  Cisco-managed pilot uses Cisco-approved enterprise AI services. Approval is
+  specific to the service, model, use case and permitted information; it does
+  not automatically extend to a custom provider or a consumer chatbot account.
 - **Participant awareness and control.** Obtain the required permission before
   use. Participants can ask for the assistant to be removed. Stopping it is
   different from deleting information already processed.

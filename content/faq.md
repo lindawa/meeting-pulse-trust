@@ -2,9 +2,17 @@
 
 ## What is Meeting Pulse for?
 
-It helps an authorized user follow selected Webex meetings through personalized
-alerts, summaries and action items. It supports the user rather than replacing
-their judgment or making commitments for them.
+It helps you stay on top of selected Webex meetings when time zones or overlapping
+commitments prevent you from attending. Your chosen persona shapes the insights,
+summaries and action items, while configured keyword alerts highlight moments
+that may need your attention. You can follow up or step into a discussion when
+needed; the assistant does not make decisions or commitments for you.
+
+## Does the assistant contribute on my behalf?
+
+It helps you recognize when your input may be needed, so you can decide how to
+respond. Receiving an alert is not the same as the assistant speaking, approving
+a decision or making a commitment on your behalf.
 
 ## Where is the pilot application hosted?
 
@@ -28,7 +36,10 @@ process content to provide the requested insights.
 For the current pilot, the deployment owner has confirmed that the production
 datastore is encrypted at rest and managed by the Cisco infrastructure team.
 Stored Webex access credentials and configured AI-provider secrets are encrypted
-before storage as an additional safeguard. This does not establish identical
+before storage as an additional safeguard. Authorized services and database
+queries can still return readable meeting records; datastore encryption does
+not mean every transcript field has separate application-level encryption.
+This does not establish identical
 protection for copies exported elsewhere, external backups, delivered messages
 or AI-provider records; those boundaries must be assessed separately.
 
@@ -85,6 +96,22 @@ Do not assume the same answer for every configurable provider. Confirm the
 approved provider, contract, data-use settings and retention terms with the
 deployment owner. This project disclosure does not make a universal no-training
 assurance.
+
+## Which AI services does the Cisco-managed pilot use?
+
+The deployment owner confirms use of Cisco-approved enterprise AI services,
+including Circuit and CX AI services as configured for the pilot. Approval
+depends on the actual service, model, use case and permitted data classification.
+It is not a blanket approval of every custom provider or consumer account from
+the same model vendor.
+
+## Does that guarantee no PII reaches an AI service?
+
+No universal guarantee is made. PII means personally identifiable information,
+which can include names or contact details appearing in meeting content.
+Platform screening can reduce exposure, but its coverage and API path must be
+verified. Approved processing and restrictions on model training are different
+from a guarantee that no personal information is ever processed.
 
 ## Does on-premises hosting mean information never leaves those servers?
 

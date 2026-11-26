@@ -30,6 +30,12 @@ is encrypted at rest**, with the datastore managed by the **Cisco infrastructure
 team**. This is an infrastructure protection for stored information, in addition
 to the application's controls.
 
+Meeting information stored within that datastore is protected by this
+encryption-at-rest layer. Authorized application services and database access
+can still retrieve readable records; this is not a claim that each transcript
+field has separate application-level encryption or that the service cannot read
+it.
+
 Stored Webex access credentials and configured AI-provider secrets are encrypted
 before storage. Encryption does not remove the need for access controls: authorized
 services must be able to process content, and privileged infrastructure access
@@ -50,7 +56,38 @@ and retention that apply to those separate copies with the deployment owner.
 - Access to a capability does not authorize every action it can perform. Ask for
   a specific action and review the confirmed result.
 
-## AI and human responsibility
+## Responsible AI and approved services
+
+The deployment owner confirms that the Cisco-managed pilot uses Cisco-approved
+enterprise AI services, including Circuit and CX AI services as configured for
+the deployment. These are enterprise service arrangements, not permission to
+send meeting information to any public chatbot or arbitrary provider endpoint.
+The approved model, use case and data classification still matter, including
+when a fallback provider is used.
+
+[Cisco's Responsible AI Framework](https://www.cisco.com/c/dam/en_us/about/doing_business/trust-center/docs/cisco-responsible-artificial-intelligence-framework.pdf)
+sets out transparency, fairness, accountability, privacy, security and
+reliability as its principles and calls for relevant AI use-case assessments.
+Meeting Pulse's responsible-use approach emphasizes participant awareness,
+account-scoped access, appropriate recipients and human review. Using an approved
+AI platform supports that approach; it does not by itself complete the separate
+review of this application or its meeting use case.
+
+## Personal information and AI processing
+
+Cisco [describes privacy screening and security guardrails in its internal AI
+assistant](https://blogs.cisco.com/cisco-on-cisco/cisco-secure-internal-ai-assistant).
+Those platform safeguards must not be read as a guarantee that every piece of
+personal information is removed from every Meeting Pulse request. Meeting text
+and enabled shared-content context can include names or other personal
+information, and screening coverage depends on the selected service and route.
+
+Minimize unnecessary personal information and use only services and meeting data
+permitted for the intended purpose. Do not assume that "Cisco-approved," "not
+used for model training" and "no personal information is processed" mean the
+same thing. Confirm the actual service's processing and data-use terms.
+
+## AI output and human responsibility
 
 AI output can omit context, misidentify a speaker or generate an incorrect
 interpretation. Review important decisions, action owners and customer-facing
