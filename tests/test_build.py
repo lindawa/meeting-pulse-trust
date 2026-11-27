@@ -145,7 +145,7 @@ class BuildTests(unittest.TestCase):
             nav_links = {a["href"] for t, a in tags if t == "a" and "href" in a}
             self.assertTrue({f"{slug}.html" for slug in SLUGS} <= nav_links)
             self.assertTrue(any(t == "script" and a.get("src") == "assets/site.js"
-                                and "defer" in a for t, a in tags))
+                                and "defer" not in a for t, a in tags))
             self.assertTrue(any(t == "link" and a.get("href") == "assets/site.css"
                                 for t, a in tags))
             for tag, attrs in tags:
@@ -158,6 +158,37 @@ class BuildTests(unittest.TestCase):
                         continue
                     self.assertFalse(value.startswith("/"), value)
                     self.assertTrue((page.parent / unquote(parsed.path)).is_file(), value)
+
+    def test_theme_initializes_before_styles_without_inline_code(self):
+        self.assert_success()
+        for slug in SLUGS:
+            markup = (self.output / f"{slug}.html").read_text()
+            tags = Document(markup).tags
+            script = next(i for i, (tag, attrs) in enumerate(tags)
+                          if tag == "script" and attrs.get("src") == "assets/site.js")
+            stylesheet = next(i for i, (tag, attrs) in enumerate(tags)
+                              if tag == "link" and attrs.get("rel") == "stylesheet")
+            self.assertLess(script, stylesheet)
+            self.assertNotIn("defer", tags[script][1])
+            self.assertNotIn("async", tags[script][1])
+
+    def test_every_page_has_accessible_theme_choices_hidden_without_javascript(self):
+        self.assert_success()
+        for slug in SLUGS:
+            tags = Document((self.output / f"{slug}.html").read_text()).tags
+            group = next((a for t, a in tags if a.get("class") == "theme-switcher"), {})
+            self.assertEqual(group.get("role"), "group")
+            self.assertEqual(group.get("aria-label"), "Color theme")
+            self.assertIn("hidden", group)
+            choices = [a for t, a in tags if t == "button" and "data-theme-choice" in a]
+            self.assertEqual([a["data-theme-choice"] for a in choices],
+                             ["system", "light", "dark"])
+            for choice in choices:
+                self.assertEqual(choice.get("type"), "button")
+                self.assertTrue(choice.get("aria-label"))
+                self.assertTrue(choice.get("title"))
+                self.assertEqual(choice.get("aria-pressed"),
+                                 str(choice["data-theme-choice"] == "system").lower())
 
     def test_escapes_all_metadata_and_disables_raw_html(self):
         hostile = '\"><script>alert("x")</script>&'
