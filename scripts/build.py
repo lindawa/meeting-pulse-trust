@@ -143,8 +143,7 @@ def theme_controls():
             f'aria-label="{label}" title="{label}" aria-pressed="{str(mode == "system").lower()}">'
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
             'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" '
-            f'aria-hidden="true" focusable="false">{icons[mode]}</svg>'
-            f'<span class="theme-tooltip" aria-hidden="true">{label}</span></button>'
+            f'aria-hidden="true" focusable="false">{icons[mode]}</svg></button>'
         )
     return '''<!--
 Theme icons: Lucide Icons. ISC License.

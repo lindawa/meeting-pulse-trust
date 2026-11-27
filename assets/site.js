@@ -29,7 +29,12 @@
   device.addEventListener("change", applyTheme);
   window.addEventListener("storage", (event) => {
     if (storage && event.storageArea === storage && (event.key === key || event.key === null)) {
-      preference = validPreference(event.newValue);
+      try {
+        // Another tab may have saved a newer choice while this event was queued.
+        preference = validPreference(storage.getItem(key));
+      } catch {
+        return;
+      }
       applyTheme();
     }
   });

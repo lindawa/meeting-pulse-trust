@@ -70,7 +70,11 @@ function setup({ dark = false, saved = null, blockedRead = false, blockedWrite =
       .map((b) => b.dataset.themeChoice),
     click(choice) { buttons.find((b) => b.dataset.themeChoice === choice).emit("click"); },
     changeDevice(value) { media.matches = value; media.emit("change"); },
-    storageEvent(value, area = storage) {
+    storageEvent(value, area = storage, current = value) {
+      if (area === storage) {
+        if (current === null) values.delete(KEY);
+        else values.set(KEY, current);
+      }
       window.emit("storage", { key: KEY, newValue: value, storageArea: area });
     },
   };
@@ -165,8 +169,17 @@ test("ignores storage changes from another storage area", () => {
   assert.equal(page.theme(), "light");
 });
 
+test("a queued storage event reconciles the latest saved preference", () => {
+  const page = setup();
+  page.storageEvent("dark", page.storage, "light");
+  assert.equal(page.theme(), "light");
+  assert.equal(page.saved(), "light");
+  assert.deepEqual(page.pressed(), ["light"]);
+});
+
 test("clearing local storage restores automatic theme", () => {
   const page = setup({ saved: "light", dark: true });
+  page.storage.removeItem(KEY);
   page.window.emit("storage", { key: null, newValue: null, storageArea: page.storage });
   assert.equal(page.theme(), "dark");
   assert.deepEqual(page.pressed(), ["system"]);
