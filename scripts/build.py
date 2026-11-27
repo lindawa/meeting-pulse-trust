@@ -121,6 +121,67 @@ def navigation(pages, current):
     return '<nav aria-label="Documentation"><ul>\n' + "\n".join(links) + "\n</ul></nav>"
 
 
+def theme_controls():
+    # Lucide icon paths, kept local so the page needs no icon library or CDN.
+    icons = {
+        "system": ('<rect width="20" height="14" x="2" y="3" rx="2"/>'
+                   '<line x1="8" x2="16" y1="21" y2="21"/>'
+                   '<line x1="12" x2="12" y1="17" y2="21"/>'),
+        "light": ('<circle cx="12" cy="12" r="4"/>'
+                  '<path d="M12 2v2M12 20v2m-7.07-17.07 1.41 1.41'
+                  'm11.32 11.32 1.41 1.41M2 12h2m16 0h2'
+                  'M6.34 17.66l-1.41 1.41m14.14-14.14-1.41 1.41"/>'),
+        "dark": ('<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472'
+                 'c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268'
+                 'c.344-.215.825-.004.803.401"/>'),
+    }
+    buttons = []
+    for mode, label in (("system", "Use device theme"), ("light", "Use light theme"),
+                        ("dark", "Use dark theme")):
+        buttons.append(
+            f'<button type="button" class="theme-button" data-theme-choice="{mode}" '
+            f'aria-label="{label}" title="{label}" aria-pressed="{str(mode == "system").lower()}">'
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+            'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" '
+            f'aria-hidden="true" focusable="false">{icons[mode]}</svg>'
+            f'<span class="theme-tooltip" aria-hidden="true">{label}</span></button>'
+        )
+    return '''<!--
+Theme icons: Lucide Icons. ISC License.
+Copyright (c) 2026 Lucide Icons and Contributors
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+Monitor and Moon derive from Feather. MIT License.
+Copyright (c) 2013-present Cole Bemis
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<div class="theme-switcher" role="group" aria-label="Color theme" hidden>
+''' + "\n".join(buttons) + "\n</div>"
+
+
 def render_page(config, page, body):
     nav = navigation(config["pages"], page["slug"])
     return f'''<!doctype html>
@@ -132,14 +193,17 @@ def render_page(config, page, body):
   <meta name="description" content="{escape(config["description"], quote=True)}">
   <meta name="referrer" content="no-referrer">
   <title>{escape(page["title"])} | {escape(config["title"])}</title>
+  <script src="assets/site.js"></script>
   <link rel="stylesheet" href="assets/site.css">
-  <script src="assets/site.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
-    <a class="site-title" href="index.html">{escape(config["title"])}</a>
-    <span class="site-label">Security &amp; Privacy</span>
+    <div class="site-heading">
+      <a class="site-title" href="index.html">{escape(config["title"])}</a>
+      <span class="site-label">Security &amp; Privacy</span>
+    </div>
+    {theme_controls()}
     <details class="mobile-menu">
       <summary>Documentation</summary>
       {nav}

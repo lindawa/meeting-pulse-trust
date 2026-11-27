@@ -15,6 +15,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
+node --test tests/test_theme.cjs
 python scripts/build.py --output _site
 ```
 
@@ -25,6 +26,20 @@ a GitHub Pages project path. The navigation works without JavaScript.
 The default output is `_site` under the working directory. `--source DIR`
 selects a different documentation source, primarily for isolated test fixtures;
 otherwise the source is this repository, regardless of the working directory.
+
+## Appearance
+
+The site follows the device's light/dark theme by default. The header's theme
+controls select System, Light or Dark; an explicit choice is saved in browser
+local storage and reused across pages and visits on the same site. System
+clears the override and resumes following device changes.
+
+No preference is sent to a server. The controls still work if storage is blocked,
+but the choice then lasts only for the current page. Without JavaScript the site
+follows the device theme using CSS. Printed pages always use a light background.
+Node.js 20 or newer is needed only for the theme-controller tests, not the build.
+The locally embedded theme icons are from Lucide; license notices are included
+in the generated markup.
 
 ## Content Contract
 
